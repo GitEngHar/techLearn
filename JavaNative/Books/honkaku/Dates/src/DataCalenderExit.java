@@ -1,3 +1,5 @@
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -33,4 +35,12 @@ public class DataCalenderExit {
         cl.setTime(dt);
         System.out.println(cl.getTime());
     }
+    
+    public void ex7(){
+        Date dt = new Date();
+        DateFormat format = new SimpleDateFormat("yyyy 年 MM 月 dd 日 HH 時 mm 分 ss 秒");
+        System.out.println(format.format(dt));
+    }
+
+    
 }
