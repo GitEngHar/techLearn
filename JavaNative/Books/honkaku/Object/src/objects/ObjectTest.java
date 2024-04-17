@@ -1,5 +1,9 @@
 package objects;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+import apps.DefaultFunction;
 
 public class ObjectTest {
     public void ex1(){
@@ -54,9 +58,19 @@ public class ObjectTest {
         a += 1;
         System.out.println(a);
     }
+    protected void ex8(){
+        List<Integer> list = new ArrayList(); 
+        List<Integer> linkedList = new LinkedList();
+        list.add(1);
+        list.add(2);
+        linkedList.add(2);
+        linkedList.add(3);
+    }
+    protected void ex9(){
+        DefaultFunction fu = DefaultFunction.newinstance();
+        System.out.println(fu.hello());
+    }
 }
-
-
 
 class Entity{
     int value;
