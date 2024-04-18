@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import apps.DefaultFunction;
-
+import apps.Function;
 public class ObjectTest {
     public void ex1(){
         int value = 2;
@@ -67,7 +67,8 @@ public class ObjectTest {
         linkedList.add(3);
     }
     protected void ex9(){
-        DefaultFunction fu = DefaultFunction.newinstance();
+        DefaultFunction fu = new Function();
+        //DefaultFunction fu = DefaultFunction.newinstance();
         System.out.println(fu.hello());
     }
 }
