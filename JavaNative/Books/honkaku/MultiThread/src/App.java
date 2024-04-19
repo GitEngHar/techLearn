@@ -3,8 +3,28 @@ import java.util.ArrayList;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        execIncrement();
+        execLongHolder ();
     }
+    
+    public static void execLongHolder(){
+        LongHolder holder = new LongHolder();
+        Thread th1 = new Thread(new LongPlusSetter("thread1", holder));
+        Thread th2 = new Thread(new LongMinusSetter("thread2", holder));
+        th1.start();
+        th2.start();
+        try{
+            th1.join();
+            th2.join();
+            long result = holder.getResult();
+            System.out.printf("result:%d",result);
+        }catch(InterruptedException e){
+            e.printStackTrace();
+        }
+
+        
+
+    }
+
     public static void execIncrement(){
         HolderInt holder = new HolderInt();
         Thread th1 = new Thread(new Incrementer("thread1", holder));
