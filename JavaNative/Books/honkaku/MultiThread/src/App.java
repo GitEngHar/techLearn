@@ -1,11 +1,24 @@
 import java.util.List;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        execLongHolder ();
+        callbackSample ();
     }
-    
+    public static void callbackSample(){
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        AsyncProcess proc = new AsyncProcess(
+            new AsyncCallback() {
+                public void notify(String message){
+                    System.out.println("callback message" + message);
+                    executor.shutdown();
+                }
+        });
+        executor.execute(proc);
+        System.out.println("AsyncProcess is started.");
+    }
     public static void execLongHolder(){
         LongHolder holder = new LongHolder();
         Thread th1 = new Thread(new LongPlusSetter("thread1", holder));
