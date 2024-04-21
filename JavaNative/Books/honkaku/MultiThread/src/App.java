@@ -1,11 +1,39 @@
 import java.util.List;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.Callable;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        callbackSample ();
+        futureSample ();
+    }
+
+    public static void futureSample(){
+        ExecutorService exec = Executors.newSingleThreadExecutor();
+        Future<String> future = exec.submit(new Callable<String>() {
+            public String call(){
+                try{
+                    Thread.sleep(1000);
+                }catch(InterruptedException ex){
+                    return "Error";
+                }
+                return "Finished";
+            }
+        });
+
+        System.out.println("Exec Service is fanished");
+        try{
+            String message = future.get();
+            System.out.println("Exec is finished : message = " + message);
+        }catch(InterruptedException | ExecutionException ex){
+            ex.printStackTrace();
+        }finally{
+            exec.shutdown();
+        }
+
     }
     public static void callbackSample(){
         ExecutorService executor = Executors.newSingleThreadExecutor();
