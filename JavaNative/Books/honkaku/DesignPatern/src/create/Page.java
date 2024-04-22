@@ -1,3 +1,5 @@
+package create;
+
 public class Page {
     private String header;
     private String contents;

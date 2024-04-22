@@ -1,5 +1,5 @@
 package structure;
 
-public interface Target {
+public interface newSystemInterface {
     void process();
 }
