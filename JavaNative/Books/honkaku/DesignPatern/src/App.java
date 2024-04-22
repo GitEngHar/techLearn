@@ -7,12 +7,26 @@ import abstractstructure.*;
 import composite.*;
 import command.*;
 import strategy.*;
-
+import observer.*;
 public class App {
     public static void main(String[] args) throws Exception {
-        commandBooks();
+        observerTest();
     }
 
+    public static void observerTest(){
+        Observer observer = new Client();
+        Subject dataChanger = new DataChanger();
+
+        dataChanger.addObserver(observer);
+        for (int count = 0; count < 10; count++){
+            dataChanger.execute();
+            try{
+                Thread.sleep(1000);
+            }catch(InterruptedException e){
+                e.printStackTrace();
+            }
+        }
+    }
     public static void strategyBooks(){
         strategy.Book comic = new strategy.Book(600);
         strategy.Book technicalBook = new strategy.Book(2000);
