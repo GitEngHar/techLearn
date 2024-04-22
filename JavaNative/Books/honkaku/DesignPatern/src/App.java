@@ -5,10 +5,46 @@ import create.TopPageBuilder;
 import structure.*;
 import abstractstructure.*;
 import composite.*;
+import command.*;
+import strategy.*;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        compositeTest();
+        commandBooks();
+    }
+
+    public static void strategyBooks(){
+        strategy.Book comic = new strategy.Book(600);
+        strategy.Book technicalBook = new strategy.Book(2000);
+
+        strategy.Strategy discount = new DiscountStrategy();
+        strategy.Strategy specialDiscount = new specialDiscount();
+        
+        strategy.Shop discountShop = new Shop(discount);
+        strategy.Shop specialShop = new Shop(specialDiscount);
+        
+        discountShop.sell(comic);
+        specialShop.sell(technicalBook);
+
+        System.out.printf("漫画の値段 : %f",comic.getAmount());
+        System.out.printf("漫画の値段 : %f",technicalBook.getAmount());
+        
+    }
+    public static void commandBooks(){
+        command.Book comic = new command.Book(600);
+        command.Book technicalBook = new command.Book(1700);
+        
+        Command discountCommand = new Discount();
+
+        Command specialdiscoutCommand = new SpecialDiscount();
+
+        discountCommand.setBook(comic);
+        discountCommand.execute();
+        System.out.printf("割引した漫画の値段は %f 円です%n",comic.getAmount());
+
+        specialdiscoutCommand.setBook(technicalBook);
+        specialdiscoutCommand.execute();
+        System.out.printf("割引した技術書の値段は %f 円です",technicalBook.getAmount());
     }
     public static void compositeTest(){
         composite.File file1 = new composite.File("file1");
