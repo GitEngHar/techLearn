@@ -14,6 +14,9 @@
   - 関数の引数に別関数をいれる処理
   - 関数A(関数B){} のような処理の総称
 
+### 検証で使えるサイト
+- postgresqlのplaygroud
+https://www.crunchydata.com/developers/playground
 
 ### フロントエンドメモ
 
