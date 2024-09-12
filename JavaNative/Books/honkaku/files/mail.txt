@@ -1,2 +1,0 @@
-system.mail.address=haru@gmail.com
-system.mail.enable=true
