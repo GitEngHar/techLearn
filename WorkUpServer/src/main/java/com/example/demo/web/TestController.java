@@ -12,9 +12,17 @@ import com.example.demo.service.HelloBean;
 public class TestController {
 	@Autowired
 	HelloBean helloBean;
-	@GetMapping("wp")
+	
+	@GetMapping("")
 	public String rootHandler() {
 		helloBean.hello();
 		return "OK";
 	}
+	
+	@GetMapping("wp")
+	public String wpHandler() {
+		helloBean.hello();
+		return "OK";
+	}
+
 }
