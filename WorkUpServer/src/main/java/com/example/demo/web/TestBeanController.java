@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.service.BeanService;
 import com.example.demo.service.HelloBean;
 
 @RestController
@@ -24,6 +25,10 @@ public class TestBeanController {
 	@Autowired
 	@Qualifier("bean2")
 	String bean2;
+	
+	
+	@Autowired
+	BeanService beanService;
 	
 	/* HelloBeanの動作を確認する */
 	@GetMapping("")
@@ -44,5 +49,12 @@ public class TestBeanController {
 	public String bean2Handler() {
 		System.out.println(this.bean2);
 		return this.bean2;
+	}
+	
+	@GetMapping("beanrep")
+	public String beanRepositoryHandler() {
+		String beanText = beanService.getTestBeanById().getBeantext();
+		System.out.println(beanText);
+		return beanText;
 	}
 }

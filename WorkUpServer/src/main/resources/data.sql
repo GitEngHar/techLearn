@@ -1,0 +1,1 @@
+INSERT INTO root_bean (beantext) VALUES ('beantest')
