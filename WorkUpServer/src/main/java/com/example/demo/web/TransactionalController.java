@@ -1,14 +1,16 @@
 package com.example.demo.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.service.TransactionalService;
+import com.example.demo.service.gametransaction.TransactionalService;
 
 @RestController
 @RequestMapping("/tran")
+@ComponentScan("com.example.service.gametransaction")
 public class TransactionalController {
 	// ComponentでBean化した HelloBean をDIする
 	@Autowired

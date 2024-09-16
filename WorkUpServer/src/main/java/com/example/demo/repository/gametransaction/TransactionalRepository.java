@@ -1,4 +1,4 @@
-package com.example.demo.repository;
+package com.example.demo.repository.gametransaction;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Result;

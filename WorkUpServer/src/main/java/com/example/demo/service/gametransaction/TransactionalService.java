@@ -1,12 +1,12 @@
-package com.example.demo.service;
+package com.example.demo.service.gametransaction;
 
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.domain.GamePoint;
-import com.example.demo.repository.GamePointRepository;
-import com.example.demo.repository.TransactionalRepository;
+import com.example.demo.repository.gametransaction.GamePointRepository;
+import com.example.demo.repository.gametransaction.TransactionalRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,7 +18,8 @@ public class TransactionalService {
 	private final GamePointRepository gamePointRepository;
 	private int breadStock = 2;
 	private int appleStock = 1;
-	// ゲームで買い物をしてポイントを減算する
+	
+	// ゲームで買い物をしてポイントを減算する。
 	@Transactional(rollbackFor=Exception.class)
 	public String exchangePointToItem() throws Exception {
 		int userId = 1;
@@ -37,6 +38,7 @@ public class TransactionalService {
 		return wantItem;
 	}
 	
+	// 検証に利用するポイントをリセットする
 	public void resetPoint() {
 		int userId = 1;
 		gamePointRepository.resetPoint(userId);
