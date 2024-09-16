@@ -27,6 +27,7 @@ public class TransactionalService {
 		int exhangeCost = 10;// 交換アイテムのコスト
 		String wantItem = "";
 		String description = "exchange point to item";
+		
 		// トランザクションテーブルへ追加
 		transactionalRepository.insertTransactionObject(userId, exhangeCost, description);
 			
