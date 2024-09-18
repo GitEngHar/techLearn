@@ -57,4 +57,10 @@ public class TestBeanController {
 		System.out.println(beanText);
 		return beanText;
 	}
+	
+	/* @Valueの挙動を確認する */
+	@GetMapping("beantestvalue")
+	public String beanTestValueHandler() {
+		return helloBean.confirmBeanTestValue();
+	}
 }
