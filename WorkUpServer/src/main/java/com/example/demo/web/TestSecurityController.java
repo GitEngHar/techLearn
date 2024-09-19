@@ -9,6 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class TestSecurityController {
 	@GetMapping("")
 	public String indexHandler() {
+		return "top";
+	}
+	
+	@GetMapping("hogepage")
+	public String hogePageHandler() {
 		return "hoge";
 	}
 	

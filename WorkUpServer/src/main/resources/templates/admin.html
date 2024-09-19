@@ -6,8 +6,13 @@
 </head>
 <body>
 	welcom to admin page
+	<div sec:authorize="hasRole('ADMIN') or hasRole('USER')">
+		<form action="/hogepage" method="get">
+				<button action="submit">hoge</button>
+		</form>
+	</div>
 	<form action="/" method="get">
-		<button action="submit">hoge</button>
+			<button action="submit">top</button>
 	</form>
 </body>
 </html>

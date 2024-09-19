@@ -6,8 +6,16 @@
 </head>
 <body>
 	welcom to hoge page
-	<form action="/adminpage" method="get">
-		<button action="submit">admin</button>
+	
+	<div sec:authorize="hasRole('ADMIN')">
+		<form action="/adminpage" method="get">
+			<button action="submit">admin</button>
+		</form>
+	</div>
+	
+	
+	<form action="/" method="get">
+			<button action="submit">top</button>
 	</form>
 </body>
 </html>
