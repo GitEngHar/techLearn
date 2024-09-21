@@ -18,3 +18,11 @@ CREATE TABLE IF NOT EXISTS plugin_gamepoint_transaction (
   transactional_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   FOREIGN KEY (user_id) REFERENCES root_gamepoint(user_id) ON DELETE CASCADE
 );
+
+-- 認可検証用シークレット情報格納テーブル
+CREATE TABLE IF NOT EXISTS root_secret_infomation (
+  id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  info varchar(255) NOT NULL
+);
+
+

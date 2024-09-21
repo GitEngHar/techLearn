@@ -46,6 +46,7 @@ public class SecurityConfig {
 					.requestMatchers("/").permitAll() // トップページは認証不要
 					.requestMatchers("/tran/**").permitAll() // restAPI関連は認証不要
 					.requestMatchers("/adminpage/**").hasRole("ADMIN")
+					.requestMatchers("/hogepage/**").hasRole("ADMIN")
 					.requestMatchers("/hogepage/**").hasRole("USER")
 					.anyRequest().authenticated() // 他のURLは認証必要
 						);
