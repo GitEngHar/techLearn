@@ -10,7 +10,7 @@ import com.example.demo.service.BeanService;
 import com.example.demo.service.HelloBean;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/rest")
 public class TestBeanController {
 	// ComponentでBean化した HelloBean をDIする
 	@Autowired

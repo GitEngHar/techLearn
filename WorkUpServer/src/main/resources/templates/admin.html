@@ -5,15 +5,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	welcom to hoge page
-	
-	<div sec:authorize="hasRole('ADMIN')">
-		<form action="/adminpage" method="get">
-			<button action="submit">admin</button>
+	welcom to admin page
+	<div sec:authorize="hasRole('ADMIN') or hasRole('USER')">
+		<form action="/hogepage" method="get">
+				<button action="submit">hoge</button>
 		</form>
 	</div>
-	
-	
 	<form action="/" method="get">
 			<button action="submit">top</button>
 	</form>

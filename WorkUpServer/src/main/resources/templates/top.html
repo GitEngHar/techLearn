@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	welcom to top page
+	<div sec:authorize="hasRole('ADMIN')">
+		<form action="/adminpage" method="get">
+			<button action="submit">admin</button>
+		</form>
+	</div>
+	
+	<div sec:authorize="hasRole('ADMIN') or hasRole('USER')">
+		<form action="/hogepage" method="get">
+				<button action="submit">hoge</button>
+		</form>
+	</div>
+	
+	<a th:href="@{/secretpage}">シークレット情報を見る</a>
+	<a th:href="@{/login}">ログイン</a>
+	<a th:href="@{/logout}">ログアウト</a>
+			
+</body>
+</html>
