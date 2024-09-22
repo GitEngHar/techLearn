@@ -25,4 +25,11 @@ CREATE TABLE IF NOT EXISTS root_secret_infomation (
   info varchar(255) NOT NULL
 );
 
-
+-- 認可検証用ユーザー情報管理テーブル
+CREATE TABLE IF NOT EXISTS users (
+  id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  roles VARCHAR(255) NOT NULL
+);
