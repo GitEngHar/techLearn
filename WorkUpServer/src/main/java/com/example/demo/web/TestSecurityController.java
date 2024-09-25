@@ -35,7 +35,7 @@ public class TestSecurityController {
 	
 	@GetMapping("secretpage")
 	public String secretPageHandler(Model model,@AuthenticationPrincipal UserDetails user) {
-		// ユーザー権限がAdminであるかを検査
+		// ユーザー権限検査(Adminであるか)
 		boolean isAdmin = user.getAuthorities().stream()
 			      .anyMatch(auth -> "ROLE_ADMIN".equals(auth.getAuthority()));
 		SecretInfomation secretInfomation = isAdmin ? secretInfomationService.getSecretInfo() : new SecretInfomation(0,"閲覧不可能");
