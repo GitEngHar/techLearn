@@ -9,11 +9,6 @@ public class HelloBean {
 	private String beanTestValue;
 	
 	public String confirmBeanTestValue() {
-		System.out.println("DiValue=" + beanTestValue);
 		return beanTestValue;
-	}
-	
-	public void hello() {
-		System.out.println("helloBean");
 	}
 }
