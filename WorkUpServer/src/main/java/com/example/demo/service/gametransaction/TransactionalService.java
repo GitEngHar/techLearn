@@ -1,5 +1,6 @@
 package com.example.demo.service.gametransaction;
 
+import lombok.Data;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,30 +14,29 @@ import lombok.RequiredArgsConstructor;
 @Component
 @RequiredArgsConstructor
 @Service
+@Data
 public class TransactionalService {
 	private final TransactionalRepository transactionalRepository;
 	private final GamePointRepository gamePointRepository;
 	private int breadStock = 2;
-	private int appleStock = 1;
-	
+	private int appleStock = 2;
 	// ゲームで買い物をしてポイントを減算する。
 	@Transactional(rollbackFor=Exception.class)
-	public String exchangePointToItem() throws Exception {
+	public void exchangePointToItem() throws Exception {
 		int userId = 1;
 		int itemId = 1;
 		int exhangeCost = 10;// 交換アイテムのコスト
-		String wantItem = "";
 		String description = "exchange point to item";
 		
 		// トランザクションテーブルへ追加
 		transactionalRepository.insertTransactionObject(userId, exhangeCost, description);
 			
-		// 交換対象のアイテムを取得する
-		wantItem = getItem(itemId);
+		// アイテムの在庫を減らす
+		minusItemStock(itemId);
 		
-		// ユーザーのポイントを減算する()
+		// ユーザーのポイントを減算する
 		gamePointRepository.exchangePointToItem(userId, exhangeCost);	
-		return wantItem;
+
 	}
 	
 	// 検証に利用するポイントをリセットする
@@ -46,16 +46,12 @@ public class TransactionalService {
 	}
 	
 	// アイテムIDからアイテムを取得する
-	private String getItem(int itemId) throws Exception {
-		String result = "";
-		
+	protected void minusItemStock(int itemId) throws Exception {
 		switch(itemId) {
 			case 1:
-				result = "bread";
 				breadStock =breadStock - 1;	
 				break;
 			case 2:
-				result = "apple";
 				appleStock =appleStock - 1;
 				break;
 		}
@@ -63,8 +59,7 @@ public class TransactionalService {
 		if(0 > breadStock || 0 > appleStock) {
 			throw new Exception("No Stock Error");
 		}
-		
-		return result;
+
 	}
 	
 	public GamePoint getGamePoint() {

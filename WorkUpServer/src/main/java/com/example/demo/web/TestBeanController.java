@@ -33,7 +33,6 @@ public class TestBeanController {
 	/* HelloBeanの動作を確認する */
 	@GetMapping("")
 	public String rootHandler() {
-		helloBean.hello();
 		return "OK";
 	}
 	
