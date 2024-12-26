@@ -1,18 +1,18 @@
 package com.example.demo.helper;
 import com.example.demo.domain.ThreadCounter;
 
-public class ThreadCounterHelper extends Thread {
+public class ThreadCounterNotSyncHelper extends Thread {
     // counterオブジェクト
     private final ThreadCounter threadCounter;
-    public ThreadCounterHelper(
+    public ThreadCounterNotSyncHelper(
             ThreadCounter threadCounter
     ){
         this.threadCounter = threadCounter;
     }
     // Threadで処理させたいcounter加算メソッド
     public void run(){
-        for(int i=0;i<1000;i++){
-            threadCounter.increment();
+        for(int i=0;i<10000;i++){
+            threadCounter.notSyncIncrement();
         }
     }
 }

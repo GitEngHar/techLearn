@@ -1,7 +1,8 @@
 package com.example.demo.web;
 
 import com.example.demo.domain.ThreadCounter;
-import com.example.demo.helper.ThreadCounterHelper;
+import com.example.demo.helper.ThreadCounterNotSyncHelper;
+import com.example.demo.helper.ThreadCounterSyncHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,28 +21,49 @@ public class SyncController {
     @GetMapping("thread-safe")
     private String threadSafe(Model model){
         int count = 0;
-
-        for(int i=0;i<100;i++){
-            ThreadCounterHelper threadCounterHelper = new ThreadCounterHelper(threadCounter);
+        // カウントをリセットする
+        threadCounter.init();
+        // 100 Thread を同期して実行する
+        for(int i=0;i<1000;i++){
+            ThreadCounterSyncHelper threadCounterHelper = new ThreadCounterSyncHelper(threadCounter);
             threadCounterHelper.start();
         }
-
         try{
-            Thread.sleep(2000);
-            count = threadCounter.getCount();
+            // 5秒まつ
+            Thread.sleep(5000);
+            // 結果の取得
+            count = threadCounter.syncGetCount();
         }catch(InterruptedException e){
             e.printStackTrace();
         }
-
+        // 結果表示
         model.addAttribute("count",count);
         return "/thread-counter";
     }
 
     /*
-     * スレッドセーフの場合で数値加算をする
+     * スレッドセーフをしない場合で数値加算をする
      * */
     @GetMapping("thread-no-safe")
-    private String threadNoSafe(){
+    private String threadNoSafe(Model model){
+        int count = 0;
+        // カウントをリセットする
+        threadCounter.init();
+        // 100 Thread を非同期で実行する
+        for(int i=0;i<1000;i++){
+            ThreadCounterNotSyncHelper threadCounterHelper = new ThreadCounterNotSyncHelper(threadCounter);
+            threadCounterHelper.start();
+        }
+        try{
+            // 5秒まつ
+            Thread.sleep(5000);
+            // 結果の取得
+            count = threadCounter.notSyncGetCount();
+        }catch(InterruptedException e){
+            e.printStackTrace();
+        }
+        // 結果表示
+        model.addAttribute("count",count);
         return "/thread-counter";
     }
 }
