@@ -4,9 +4,7 @@ import com.example.demo.domain.ThreadCounter;
 public class ThreadCounterSyncHelper extends Thread {
     // counterオブジェクト
     private final ThreadCounter threadCounter;
-    public ThreadCounterSyncHelper(
-            ThreadCounter threadCounter
-    ){
+    public ThreadCounterSyncHelper(ThreadCounter threadCounter){
         this.threadCounter = threadCounter;
     }
     // Threadで処理させたいcounter加算メソッド

@@ -16,6 +16,7 @@ public class ThreadCounter {
     public synchronized int syncGetCount(){
         return this.count;
     }
+    //検証のたびにカウントをリセットする
     public void init(){
         this.count = 0;
     }
