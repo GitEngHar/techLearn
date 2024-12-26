@@ -45,7 +45,7 @@ public class SecurityConfig {
 					.requestMatchers("/adminpage/**").hasRole("ADMIN")
 					.requestMatchers("/hogepage/**").hasRole("ADMIN")
 					.requestMatchers("/hogepage/**").hasRole("USER")
-					.anyRequest().authenticated() // 他のURLは認証必要
+					.anyRequest().permitAll() // 他のURLは認証必要
 						);
 		return http.build();
 	}
